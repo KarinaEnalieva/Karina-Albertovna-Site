@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MTClick Solutions — Digital Advertising Agency</title>
+  <meta name="description" content="We're a forward-thinking marketing agency driving growth across the world's most powerful digital advertising platforms." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow: #F2CA3A;
+      --yellow-dim: rgba(242,202,58,0.12);
+      --bg-dark: #0A0B12;
+      --bg-navy: #070917;
+      --bg-card: #0F1020;
+      --bg-card2: #0C0D1C;
+      --surface: #161828;
+      --text: #EEEEF5;
+      --text-secondary: #C4C8DC;
+      --text-muted: #7880A0;
+      --cyan: #13E8E9;
+      --blue-accent: #3A6FF8;
+      --border: rgba(255,255,255,0.06);
+      --border-strong: rgba(255,255,255,0.11);
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-dark);
+      color: var(--text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+    }
+
+    /* ─── HEADER / NAV ─────────────────────────────── */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 40px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(8,11,26,0.85);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .logo-icon svg { width: 100%; height: 100%; }
+    .logo-wordmark {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: 0.1em;
+      color: var(--text);
+      text-transform: uppercase;
+      line-height: 1;
+    }
+    .logo-wordmark span { color: var(--yellow); }
+
+    nav { display: flex; align-items: center; gap: 4px; }
+    nav a {
+      font-family: var(--font-body);
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 7px 14px;
+      border-radius: 7px;
+      transition: color 0.15s, background 0.15s;
+      letter-spacing: 0.015em;
+    }
+    nav a:hover { color: var(--text); background: rgba(255,255,255,0.055); }
+    nav .nav-cta {
+      background: var(--yellow);
+      color: #000;
+      font-weight: 600;
+      font-size: 13.5px;
+      padding: 8px 18px;
+      border-radius: 7px;
+      letter-spacing: 0.01em;
+    }
+    nav .nav-cta:hover { background: #fad84a; color: #000; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--text); border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* ─── HERO ─────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--bg-navy);
+      padding: 120px 40px 80px;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.35;
+    }
+    .hero-orb-1 {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, #3A1E8A 0%, transparent 70%);
+      top: -150px; left: -100px;
+    }
+    .hero-orb-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, #0B3A6B 0%, transparent 70%);
+      bottom: -80px; right: 10%;
+    }
+    .hero-orb-3 {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(240,201,58,0.3) 0%, transparent 70%);
+      top: 20%; right: 15%;
+    }
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 0%, transparent 100%);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--yellow-dim);
+      border: 1px solid rgba(242,202,58,0.25);
+      border-radius: 100px;
+      padding: 5px 14px 5px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--yellow);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero-badge-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--yellow);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.85); }
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(42px, 5.2vw, 72px);
+      font-weight: 800;
+      line-height: 1.04;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      margin-bottom: 22px;
+      animation: fadeUp 0.8s 0.1s ease both;
+    }
+    .hero-title em {
+      font-style: normal;
+      color: var(--yellow);
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--text-secondary);
+      max-width: 460px;
+      margin-bottom: 40px;
+      font-weight: 400;
+      letter-spacing: -0.005em;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--yellow);
+      color: #000;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.005em;
+      padding: 12px 24px;
+      border-radius: 9px;
+      text-decoration: none;
+      transition: background 0.18s, transform 0.18s, box-shadow 0.18s;
+      box-shadow: 0 0 28px rgba(242,202,58,0.25);
+    }
+    .btn-primary:hover {
+      background: #fad84a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 36px rgba(242,202,58,0.35);
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: transparent;
+      color: var(--text-secondary);
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 0.005em;
+      padding: 12px 22px;
+      border-radius: 9px;
+      border: 1px solid var(--border-strong);
+      text-decoration: none;
+      transition: border-color 0.18s, background 0.18s, color 0.18s, transform 0.18s;
+    }
+    .btn-secondary:hover {
+      border-color: rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      transform: translateY(-2px);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 36px;
+      margin-top: 52px;
+      padding-top: 36px;
+      border-top: 1px solid var(--border);
+      animation: fadeUp 0.8s 0.4s ease both;
+    }
+    .hero-stat-num {
+      font-family: var(--font-display);
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .hero-stat-num span { color: var(--yellow); }
+    .hero-stat-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 7px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 500;
+    }
+
+    .hero-visual {
+      position: relative;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+    .hero-card-stack {
+      position: relative;
+      height: 400px;
+    }
+    .hero-card {
+      position: absolute;
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: 16px;
+      padding: 28px;
+      backdrop-filter: blur(10px);
+    }
+    .hero-card-main {
+      width: 100%;
+      top: 20px;
+      left: 0;
+      background: linear-gradient(135deg, #1A1C2E 0%, #0F1120 100%);
+    }
+    .hero-card-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 14px;
+    }
+    .hero-card-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .hero-platform-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .hero-platform-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border-strong);
+      border-radius: 100px;
+      padding: 5px 11px;
+      font-size: 11.5px;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.01em;
+    }
+    .hero-platform-chip svg { width: 14px; height: 14px; }
+
+    .hero-card-float {
+      position: absolute;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 18px;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    .hero-card-float-1 {
+      bottom: 30px; right: -20px;
+      background: linear-gradient(135deg, rgba(58,111,248,0.2), rgba(58,111,248,0.05));
+      border-color: rgba(58,111,248,0.3);
+      animation: floatY 4s ease-in-out infinite;
+    }
+    .hero-card-float-2 {
+      top: 0; right: 20px;
+      background: linear-gradient(135deg, rgba(240,201,58,0.15), rgba(240,201,58,0.05));
+      border-color: rgba(240,201,58,0.25);
+      animation: floatY 3.5s 0.8s ease-in-out infinite;
+    }
+    @keyframes floatY {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+    .float-label { color: var(--text-muted); font-size: 11px; margin-bottom: 4px; }
+    .float-value { font-weight: 700; font-size: 18px; }
+    .float-value.yellow { color: var(--yellow); }
+    .float-value.blue { color: var(--cyan); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── SECTION COMMONS ──────────────────────────── */
+    .section {
+      padding: 100px 40px;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .section-eyebrow {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(30px, 3.2vw, 48px);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+    .section-sub {
+      font-size: 15.5px;
+      line-height: 1.75;
+      color: var(--text-secondary);
+      font-weight: 400;
+      max-width: 540px;
+      letter-spacing: -0.005em;
+    }
+
+    /* ─── SERVICES ─────────────────────────────────── */
+    #services {
+      background: var(--bg-navy);
+      position: relative;
+      overflow: hidden;
+    }
+    #services::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--yellow), transparent);
+      opacity: 0.4;
+    }
+
+    .services-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .services-header .section-sub { margin: 0 auto; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .service-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: 16px;
+      padding: 34px 30px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      cursor: default;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(240,201,58,0.06) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(240,201,58,0.2);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(240,201,58,0.06);
+    }
+    .service-card:hover::after { opacity: 1; }
+
+    .service-icon-wrap {
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+      font-size: 26px;
+      position: relative;
+      z-index: 1;
+    }
+    .service-icon-wrap.yellow { background: var(--yellow-dim); }
+    .service-icon-wrap.blue { background: rgba(58,111,248,0.12); }
+    .service-icon-wrap.cyan { background: rgba(19,232,233,0.1); }
+
+    .service-name {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+    .service-desc {
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      font-weight: 400;
+      position: relative;
+      z-index: 1;
+      letter-spacing: -0.003em;
+    }
+
+    .service-card.featured {
+      grid-column: span 1;
+      background: linear-gradient(135deg, #1F1540 0%, #0F1120 100%);
+      border-color: rgba(114,80,224,0.3);
+    }
+    .service-card.featured:hover {
+      border-color: rgba(114,80,224,0.5);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(114,80,224,0.15);
+    }
+
+    /* ─── AD PLATFORMS ─────────────────────────────── */
+    #adplatforms {
+      background: var(--bg-dark);
+      position: relative;
+    }
+
+    .platforms-header {
+      margin-bottom: 56px;
+    }
+
+    .platforms-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .platforms-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      max-width: 80%;
+    }
+
+    .platform-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: 14px;
+      padding: 28px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .platform-card:hover, .platform-card.active {
+      transform: translateY(-5px);
+      border-color: rgba(240,201,58,0.35);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+    }
+    .platform-card.active::after {
+      content: '✓';
+      position: absolute;
+      top: 10px; right: 12px;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: var(--yellow);
+      color: #000;
+      font-size: 11px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 20px;
+      text-align: center;
+    }
+    .platform-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+    .platform-name {
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-align: center;
+      letter-spacing: 0.01em;
+    }
+    .platform-card:hover .platform-name,
+    .platform-card.active .platform-name { color: var(--text); }
+
+    /* Platform brand colors */
+    .p-telegram { background: #229ED9; }
+    .p-tiktok { background: #010101; }
+    .p-x { background: #000; }
+    .p-appletv { background: #555; }
+    .p-rumble { background: #85C742; }
+    .p-linkedin { background: #0A66C2; }
+    .p-facebook { background: #1877F2; }
+    .p-yahoo { background: #720E9E; }
+    .p-youtube { background: #FF0000; }
+
+    .platforms-cta {
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    /* ─── ABOUT ────────────────────────────────────── */
+    #about {
+      background: var(--bg-navy);
+      position: relative;
+      overflow: hidden;
+    }
+    #about::after {
+      content: '';
+      position: absolute;
+      bottom: -200px; right: -200px;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(114,80,224,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .about-left { position: relative; z-index: 1; }
+    .about-left .section-sub { margin-bottom: 40px; }
+
+    .about-highlight {
+      background: linear-gradient(135deg, var(--yellow-dim), rgba(242,202,58,0.04));
+      border: 1px solid rgba(242,202,58,0.18);
+      border-radius: 12px;
+      padding: 22px 26px;
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+    }
+    .about-highlight-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .about-highlight-text {
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      letter-spacing: -0.005em;
+    }
+    .about-highlight-text strong { color: var(--text); font-weight: 600; }
+
+    .about-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: 14px;
+      padding: 26px 22px;
+      transition: transform 0.25s, border-color 0.25s;
+    }
+    .about-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(240,201,58,0.15);
+    }
+    .about-card-icon {
+      font-size: 28px;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .about-card-title {
+      font-family: var(--font-display);
+      font-size: 14.5px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+    .about-card-text {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      font-weight: 400;
+      letter-spacing: -0.003em;
+    }
+
+    /* ─── ADVANTAGES ───────────────────────────────── */
+    #advantages {
+      background: linear-gradient(160deg, #0E0F1F 0%, #050818 50%, #0a0e20 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    #advantages::before {
+      content: '';
+      position: absolute;
+      top: -100px; left: 50%;
+      transform: translateX(-50%);
+      width: 800px; height: 400px;
+      background: radial-gradient(ellipse, rgba(58,111,248,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .advantages-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .advantages-text { position: relative; z-index: 1; }
+
+    .advantages-body {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .advantages-para {
+      font-size: 15.5px;
+      line-height: 1.75;
+      color: var(--text-secondary);
+      font-weight: 400;
+      letter-spacing: -0.005em;
+    }
+    .advantages-para strong { color: var(--text); font-weight: 600; }
+
+    .advantages-points {
+      position: relative;
+      z-index: 1;
+    }
+    .adv-point {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .adv-point:first-child { padding-top: 0; }
+    .adv-point:last-child { border-bottom: none; padding-bottom: 0; }
+    .adv-num {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--yellow);
+      letter-spacing: 0.06em;
+      min-width: 28px;
+      margin-top: 4px;
+      opacity: 0.9;
+    }
+    .adv-content-title {
+      font-family: var(--font-display);
+      font-size: 15.5px;
+      font-weight: 700;
+      margin-bottom: 7px;
+      letter-spacing: -0.01em;
+    }
+    .adv-content-text {
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      font-weight: 400;
+      letter-spacing: -0.003em;
+    }
+
+    /* ─── STATS BAR ────────────────────────────────── */
+    .stats-bar {
+      background: var(--bg-card2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 48px 40px;
+    }
+    .stats-bar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      text-align: center;
+    }
+    .stat-item { position: relative; }
+    .stat-item + .stat-item::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 10%; bottom: 10%;
+      width: 1px;
+      background: var(--border);
+    }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 42px;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 10px;
+      letter-spacing: -0.03em;
+    }
+    .stat-num span { color: var(--yellow); }
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 500;
+    }
+
+    /* ─── FOOTER ───────────────────────────────────── */
+    footer {
+      background: var(--bg-navy);
+      border-top: 1px solid var(--border);
+      padding: 56px 40px 32px;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 60px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .footer-logo-wrap { display: flex; flex-direction: column; gap: 16px; }
+    .footer-tagline {
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      max-width: 280px;
+      font-weight: 400;
+      letter-spacing: -0.003em;
+    }
+    .footer-col-title {
+      font-family: var(--font-body);
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+    .footer-col-body {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    .footer-col-body p, .footer-col-body a {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      font-weight: 400;
+      line-height: 1.65;
+      text-decoration: none;
+      transition: color 0.15s;
+      letter-spacing: -0.003em;
+    }
+    .footer-col-body a:hover { color: var(--text); }
+    .footer-col-body strong {
+      display: block;
+      color: var(--text-secondary);
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 24px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .footer-copy {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      letter-spacing: 0.005em;
+    }
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+    .footer-links a {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.15s;
+      letter-spacing: 0.005em;
+    }
+    .footer-links a:hover { color: var(--text-secondary); }
+
+    /* ─── MOBILE ───────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .about-inner { grid-template-columns: 1fr; gap: 48px; }
+      .advantages-inner { grid-template-columns: 1fr; gap: 48px; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .platforms-grid { grid-template-columns: repeat(3, 1fr); }
+      .platforms-grid-2 { grid-template-columns: repeat(3, 1fr); max-width: 100%; }
+      .stats-bar-inner { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+    }
+    @media (max-width: 768px) {
+      .header { padding: 0 20px; }
+      nav { display: none; }
+      .hamburger { display: flex; }
+      .section { padding: 72px 20px; }
+      .hero { padding: 100px 20px 64px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .platforms-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+      .platforms-grid-2 { grid-template-columns: repeat(3, 1fr); }
+      .about-cards { grid-template-columns: 1fr; }
+      .stats-bar { padding: 40px 20px; }
+      .stats-bar-inner { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .hero-stats { gap: 24px; }
+    }
+    @media (max-width: 480px) {
+      .platforms-grid { grid-template-columns: repeat(3, 1fr); }
+      .hero-actions { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ─── MOBILE MENU ──────────────────────────────── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 72px; left: 0; right: 0;
+      background: rgba(8,11,26,0.97);
+      backdrop-filter: blur(20px);
+      z-index: 99;
+      padding: 20px;
+      border-bottom: 1px solid var(--border);
+      flex-direction: column;
+      gap: 4px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 14px 16px;
+      border-radius: 10px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .mobile-menu .nav-cta {
+      background: var(--yellow);
+      color: #000;
+      font-weight: 700;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     HEADER
+═══════════════════════════════════════════════════ -->
+<header class="header" id="header">
+  <a href="#" class="logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="38" height="38" rx="8" fill="#F0C93A" fill-opacity="0.12"/>
+        <path d="M8 19 L16 11 L24 19 L20 19 L20 27 L12 27 L12 19 Z" fill="#F0C93A"/>
+        <path d="M18 14 L26 14 L30 19 L26 24 L18 24 L22 19 Z" fill="#F0C93A" opacity="0.6"/>
+      </svg>
+    </div>
+    <div class="logo-wordmark">MT<span>Click</span> Solutions</div>
+  </a>
+
+  <nav>
+    <a href="#services">Our Services</a>
+    <a href="#adplatforms">Ad Platforms</a>
+    <a href="#about">About Us</a>
+    <a href="#contact" class="nav-cta">Contact Us</a>
+  </nav>
+
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="toggleMenu()">Our Services</a>
+  <a href="#adplatforms" onclick="toggleMenu()">Ad Platforms</a>
+  <a href="#about" onclick="toggleMenu()">About Us</a>
+  <a href="#contact" class="nav-cta" onclick="toggleMenu()">Contact Us</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+    <div class="hero-grid"></div>
+  </div>
+
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        Digital Advertising Agency
+      </div>
+
+      <h1 class="hero-title">
+        Together toward<br>
+        <em>the future.</em>
+      </h1>
+
+      <p class="hero-sub">
+        We're a forward-thinking marketing agency driving growth across the world's most powerful digital advertising platforms.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#adplatforms" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1L15 8L8 15M1 8H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Select Growth Channels
+        </a>
+        <a href="#about" class="btn-secondary">Learn More</a>
+      </div>
+
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">100<span>+</span></div>
+          <div class="hero-stat-label">Projects Completed</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">50<span>+</span></div>
+          <div class="hero-stat-label">Ad Networks</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">40<span>+</span></div>
+          <div class="hero-stat-label">Global Markets</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-card-stack">
+        <div class="hero-card hero-card-main">
+          <div class="hero-card-tag">Active Campaigns</div>
+          <div class="hero-card-title">Multi-Platform<br>Performance Suite</div>
+          <div class="hero-platform-row">
+            <div class="hero-platform-chip">
+              <svg viewBox="0 0 24 24" fill="#229ED9"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.94 8.19l-2.01 9.46c-.15.67-.54.84-1.1.52l-3-2.21-1.45 1.4c-.16.16-.29.29-.6.29l.21-3.02 5.5-4.96c.24-.21-.05-.33-.37-.12L6.02 14.5l-2.96-.92c-.64-.2-.65-.64.14-.95l11.57-4.46c.53-.2 1 .13.17 1.02z"/></svg>
+              Telegram
+            </div>
+            <div class="hero-platform-chip">
+              <svg viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              Facebook
+            </div>
+            <div class="hero-platform-chip">
+              <svg viewBox="0 0 24 24" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              YouTube
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-card-float hero-card-float-1">
+          <div class="float-label">Growth Rate</div>
+          <div class="float-value blue">+247%</div>
+        </div>
+        <div class="hero-card-float hero-card-float-2">
+          <div class="float-label">Avg. ROAS</div>
+          <div class="float-value yellow">4.8×</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SERVICES
+═══════════════════════════════════════════════════ -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="services-header">
+      <div class="section-eyebrow">What We Do</div>
+      <h2 class="section-title">Our Services</h2>
+      <p class="section-sub">Comprehensive digital advertising solutions tailored to your growth objectives across every major channel.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card featured">
+        <div class="service-icon-wrap yellow">📱</div>
+        <div class="service-name">Telegram: Channels, Bots & Promotion</div>
+        <div class="service-desc">Direct access to Telegram advertising with no intermediaries — reduce costs and maximize control over your campaigns.</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon-wrap blue">📊</div>
+        <div class="service-name">Media Advertising</div>
+        <div class="service-desc">Strategic media placements across premium digital networks to amplify your brand visibility and reach.</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon-wrap cyan">🎯</div>
+        <div class="service-name">Targeted Advertising</div>
+        <div class="service-desc">Precision audience targeting using advanced data analytics to deliver your message to the people who matter most.</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon-wrap yellow">🌐</div>
+        <div class="service-name">Social Media Promotion</div>
+        <div class="service-desc">Full-service social media marketing across all major platforms — from content strategy to paid performance campaigns.</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon-wrap blue">🤝</div>
+        <div class="service-name">Influencer Marketing</div>
+        <div class="service-desc">Connect with influential creators who resonate with your audience and drive authentic engagement at scale.</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon-wrap cyan">🔍</div>
+        <div class="service-name">Contextual Advertising</div>
+        <div class="service-desc">Smart contextual placements that align your ads with relevant content for higher engagement and conversion rates.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     AD PLATFORMS
+═══════════════════════════════════════════════════ -->
+<section class="section" id="adplatforms">
+  <div class="container">
+    <div class="platforms-header">
+      <div class="section-eyebrow">Advertising Channels</div>
+      <h2 class="section-title">Select your growth channels</h2>
+      <p class="section-sub">We operate across the world's most powerful advertising networks — choose the platforms that fit your strategy.</p>
+    </div>
+
+    <div class="platforms-grid">
+      <div class="platform-card active" onclick="togglePlatform(this)">
+        <div class="platform-logo p-telegram">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.94 8.19l-2.01 9.46c-.15.67-.54.84-1.1.52l-3-2.21-1.45 1.4c-.16.16-.29.29-.6.29l.21-3.02 5.5-4.96c.24-.21-.05-.33-.37-.12L6.02 14.5l-2.96-.92c-.64-.2-.65-.64.14-.95l11.57-4.46c.53-.2 1 .13.17 1.02z"/></svg>
+        </div>
+        <div class="platform-name">Telegram</div>
+      </div>
+      <div class="platform-card" onclick="togglePlatform(this)">
+        <div class="platform-logo p-tiktok" style="background:#010101;border:1px solid rgba(255,255,255,0.1)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.35 6.35 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.19 8.19 0 004.79 1.54V6.77a4.85 4.85 0 01-1.02-.08z"/></svg>
+        </div>
+        <div class="platform-name">TikTok</div>
+      </div>
+      <div class="platform-card" onclick="togglePlatform(this)">
+        <div class="platform-logo p-x" style="border:1px solid rgba(255,255,255,0.15)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.26 5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </div>
+        <div class="platform-name">X (Twitter)</div>
+      </div>
+      <div class="platform-card" onclick="togglePlatform(this)">
+        <div class="platform-logo" style="background:linear-gradient(135deg,#1a1a2e,#16213e);border:1px solid rgba(255,255,255,0.1)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.5 6H15c-.55 0-1 .45-1 1v1.5h2.5l-.5 2.5H14V20h-2.5v-7H10v-2.5h1.5V9c0-1.93 1.57-3.5 3.5-3.5H16.5V8z"/></svg>
+        </div>
+        <div class="platform-name">Apple TV+</div>
+      </div>
+      <div class="platform-card" onclick="togglePlatform(this)">
+        <div class="platform-logo p-rumble">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
+        </div>
+        <div class="platform-name">Rumble</div>
+      </div>
+    </div>
+
+    <div class="platforms-grid-2">
+      <div class="platform-card" onclick="togglePlatform(this)">
+        <div class="platform-logo p-linkedin">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </div>
+        <div class="platform-name">LinkedIn</div>
+      </div>
+      <div class="platform-card" onclick="togglePlatform(this)">
+        <div class="platform-logo p-facebook">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </div>
+        <div class="platform-name">Facebook</div>
+      </div>
+      <div class="platform-card" onclick="togglePlatform(this)">
+        <div class="platform-logo p-yahoo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M0 0l9.6 13.9v8.6h4.8v-8.6L24 0h-5.4l-6.6 9.4L5.4 0zm14.4 9.4"/></svg>
+        </div>
+        <div class="platform-name">Yahoo</div>
+      </div>
+      <div class="platform-card" onclick="togglePlatform(this)">
+        <div class="platform-logo p-youtube">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </div>
+        <div class="platform-name">YouTube</div>
+      </div>
+    </div>
+
+    <div class="platforms-cta">
+      <a href="#contact" class="btn-primary">Get a Free Strategy Session</a>
+      <a href="#services" class="btn-secondary">View All Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     ABOUT
+═══════════════════════════════════════════════════ -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="about-inner">
+      <div class="about-left">
+        <div class="section-eyebrow">Who We Are</div>
+        <h2 class="section-title">About Us</h2>
+        <p class="section-sub">
+          MTClick Solutions Ltd. brings together experienced professionals who develop and manage marketing strategies on a global scale. Combining strong technical expertise with deep knowledge of digital advertising, we design customized solutions, optimize campaigns, and continuously improve performance to deliver real results across multiple markets.
+        </p>
+
+        <div style="margin-top: 32px;">
+          <div class="about-highlight">
+            <div class="about-highlight-icon">🎯</div>
+            <div class="about-highlight-text">
+              <strong>Our mission</strong> is to drive project growth and development while equipping our clients with the support needed to <strong>stay ahead in fast-moving industries.</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-cards">
+        <div class="about-card">
+          <span class="about-card-icon">🔬</span>
+          <div class="about-card-title">Market Intelligence</div>
+          <div class="about-card-text">We explore the market in depth to uncover ideas with real growth potential, helping us remain agile and thrive in a constantly evolving world.</div>
+        </div>
+
+        <div class="about-card">
+          <span class="about-card-icon">📈</span>
+          <div class="about-card-title">Growth-Driven</div>
+          <div class="about-card-text">Our mission is to drive project growth and development while equipping our clients with the support needed to stay ahead in fast-moving industries.</div>
+        </div>
+
+        <div class="about-card">
+          <span class="about-card-icon">🌍</span>
+          <div class="about-card-title">Global Scale</div>
+          <div class="about-card-text">We develop and manage marketing strategies at a global scale, delivering real results across multiple markets with consistent performance.</div>
+        </div>
+
+        <div class="about-card">
+          <span class="about-card-icon">⚡</span>
+          <div class="about-card-title">Exceptional Results</div>
+          <div class="about-card-text">In today's digital world, strong online promotion is key to the success of any project. By bringing together top internet marketing professionals, we've created a powerful synergy that drives exceptional results.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     STATS BAR
+═══════════════════════════════════════════════════ -->
+<div class="stats-bar">
+  <div class="stats-bar-inner">
+    <div class="stat-item">
+      <div class="stat-num">10<span>+</span></div>
+      <div class="stat-label">MENA & Asia Markets</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">20<span>+</span></div>
+      <div class="stat-label">Europe & US Markets</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">10<span>+</span></div>
+      <div class="stat-label">CIS Markets</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">50<span>+</span></div>
+      <div class="stat-label">Ad Networks</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     ADVANTAGES
+═══════════════════════════════════════════════════ -->
+<section class="section" id="advantages">
+  <div class="container">
+    <div class="advantages-inner">
+      <div class="advantages-text">
+        <div class="section-eyebrow">Why MTClick</div>
+        <h2 class="section-title">Our Advantages</h2>
+
+        <div class="advantages-body">
+          <p class="advantages-para">
+            Access Telegram advertising directly — with <strong>no intermediaries, reduced costs, and complete control</strong> over your campaigns. We believe outstanding advertising is where creativity and data work together.
+          </p>
+          <p class="advantages-para">
+            Using advanced targeting technologies and performance analytics, we help brands reach the audiences that matter most. Our team develops <strong>tailored strategies built to deliver measurable growth</strong> — from traffic and lead generation to scalable sales.
+          </p>
+        </div>
+      </div>
+
+      <div class="advantages-points">
+        <div class="adv-point">
+          <div class="adv-num">01</div>
+          <div>
+            <div class="adv-content-title">Direct Telegram Access</div>
+            <div class="adv-content-text">Launch Telegram Ads without intermediaries, effectively reducing your costs while maintaining full campaign control.</div>
+          </div>
+        </div>
+        <div class="adv-point">
+          <div class="adv-num">02</div>
+          <div>
+            <div class="adv-content-title">Data-Driven Targeting</div>
+            <div class="adv-content-text">Advanced targeting techniques based on performance analytics ensure your ads reach the audiences most likely to convert.</div>
+          </div>
+        </div>
+        <div class="adv-point">
+          <div class="adv-num">03</div>
+          <div>
+            <div class="adv-content-title">Tailored Solutions</div>
+            <div class="adv-content-text">Every business is unique. We craft customized strategies to meet your specific goals — traffic, leads, or scalable sales.</div>
+          </div>
+        </div>
+        <div class="adv-point">
+          <div class="adv-num">04</div>
+          <div>
+            <div class="adv-content-title">Proven Track Record</div>
+            <div class="adv-content-text">With 100+ successfully completed projects, we bring a history of measurable accomplishment to every new venture.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════ -->
+<footer id="contact">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-logo-wrap">
+        <a href="#" class="logo">
+          <div class="logo-icon">
+            <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="38" height="38" rx="8" fill="#F0C93A" fill-opacity="0.12"/>
+              <path d="M8 19 L16 11 L24 19 L20 19 L20 27 L12 27 L12 19 Z" fill="#F0C93A"/>
+              <path d="M18 14 L26 14 L30 19 L26 24 L18 24 L22 19 Z" fill="#F0C93A" opacity="0.6"/>
+            </svg>
+          </div>
+          <div class="logo-wordmark">MT<span>Click</span> Solutions</div>
+        </a>
+        <p class="footer-tagline">A forward-thinking marketing agency driving growth across the world's most powerful digital advertising platforms.</p>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Address</div>
+        <div class="footer-col-body">
+          <strong>MTClick Solutions Ltd.</strong>
+          <p>Suite 21 / 22, Oliaji Trade Centre,</p>
+          <p>Rue De Possession, Victoria,</p>
+          <p>Mahé, Seychelles</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Contacts</div>
+        <div class="footer-col-body">
+          <a href="tel:+998940002845">+998 94 000 28 45</a>
+          <a href="#" style="color: var(--text-muted);">Website (coming soon)</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 MTClick Solutions Ltd. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    menu.classList.toggle('open');
+  }
+
+  // Platform card toggle
+  function togglePlatform(el) {
+    el.classList.toggle('active');
+  }
+
+  // Header scroll effect
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) {
+      header.style.background = 'rgba(8,11,26,0.97)';
+    } else {
+      header.style.background = 'rgba(8,11,26,0.85)';
+    }
+  });
+
+  // Intersection observer for fade-in animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.service-card, .about-card, .platform-card, .adv-point').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, border-color 0.3s, box-shadow 0.3s';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
